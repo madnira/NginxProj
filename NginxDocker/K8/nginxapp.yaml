@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginxapp-deployment
+  labels:
+    app: nginxapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginxapp
+  template:
+    metadata:
+      labels:
+        app: nginxapp
+    spec:
+      containers:
+      - name: nginxapp
+        image: arin1810/hellonginx:4.0
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginxapp-service
+spec:
+  type: LoadBalancer  #Using type LoadBalncer enables minikube to create a tunnel and access the webapp externally from the tunnel IP
+  selector:
+    app: nginxapp
+  ports:
+  - name: http
+    port: 8080     #After opening the tunnel the web app will be accessible on tunnelIP:8080
+    targetPort: 80 #The K8 service is pointing to port 80 of the container port 80 in deployment
+    

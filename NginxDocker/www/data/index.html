@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hello nginx</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>
+      Hello DOCKER !
+    </h1>
+    <p>
+      This is a simple nginx container running on a docker container.
+    </p>
+    <p>Date/Time: <span id="datetime"></span></p>
+
+      <script>
+        var dt = new Date();
+        document.getElementById("datetime").innerHTML = dt.toLocaleString();
+      </script>
+  </body>
+</html>

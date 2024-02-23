@@ -1,0 +1,11 @@
+# Create a dockerfile with alpine as base image
+FROM alpine:latest
+
+# INstall nginx
+RUN apk add --no-cache nginx
+
+ADD nginx.conf /etc/nginx/nginx.conf
+ADD ./www /www
+
+EXPOSE 80
+CMD [ "nginx" ]
