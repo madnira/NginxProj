@@ -1,0 +1,23 @@
+#CI Pipeline
+trigger:
+- none
+
+stages:
+ - stage: Build
+   displayName: BUILD
+   jobs:
+     - job: Checkout
+       workspace: 
+        clean: all
+
+       steps:
+       
+       - checkout: self
+         displayName: 'Code Checkout'
+
+       - task: Docker@2
+         displayName: 'Docker Build'
+         inputs:
+          command: build
+          dockerfile: 'NginxDocker/dockerfile'
+   
